@@ -7,32 +7,32 @@ class Coda < Formula
   on_macos do
     on_arm do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-darwin-arm64"
-      sha256 "1ff88d5fab651c1e4d74ede94ac2f5c3818ddceaa63807aae96fd7a32aced097"
+      sha256 "0e757a551749938cfd5c6555a375b1a75d3a5ad62a70143e8072b2437bd41bcc"
     end
     on_intel do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-darwin-amd64"
-      sha256 "d3990dd4578f804981011d18da8ff0937e95e7a2a927aeb3ae1ba714f3ee7285"
+      sha256 "3c415ac68f5474b4001c0af90469db6e5ac9cf8f1ad32b8dbdf3ff491e74db9a"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-linux-arm64"
-      sha256 "9187f8bb1eb89ab48ad04e037e4b8058efee97080851f710855b96c9e387a451"
+      sha256 "676ccfa7ab02f2cdef672875eb7227bd40ffb7d69915332349eeeec74324b3c9"
     end
     on_intel do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-linux-amd64"
-      sha256 "5bba46555b025f65e24883ba742d11fe8dc3cbf4872705fcd3686fb9bab8d068"
+      sha256 "9a391390125d3f0e21156b7289733f68bfa9d0654e279c4a49eaf416fbc930b4"
     end
   end
 
   def install
     arch = Hardware::CPU.arm? ? "arm64" : "amd64"
     os = OS.mac? ? "darwin" : "linux"
-    bin.install "coda-\#{os}-\#{arch}" => "coda"
+    bin.install "coda-#{os}-#{arch}" => "coda"
   end
 
   test do
-    assert_match version.to_s, shell_output("\#{bin}/coda --version 2>&1")
+    assert_match version.to_s, shell_output("#{bin}/coda --version 2>&1")
   end
 end
