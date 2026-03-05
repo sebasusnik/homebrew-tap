@@ -1,28 +1,28 @@
 class Coda < Formula
   desc "Spotify CLI controller — search, play and control your music from the terminal"
   homepage "https://github.com/sebasusnik/coda"
-  version "0.1.1"
+  version "0.1.2"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-darwin-arm64"
-      sha256 "d2a8f867f412f9f944992cc2400e8d3f81253715b0f69bebf63e848ec2ace08b"
+      sha256 "2812c175b79a83718db26c5cdaf75034b6de340b0e30c02eeb81571f1332dc22"
     end
     on_intel do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-darwin-amd64"
-      sha256 "8ff6da324d169e4b4c646dde70b4281e15de1f4ccdbe071f61ca4a6eafcb13c2"
+      sha256 "0b622b285be9af3fb424845afecc5ebdbfae35c0f121e196440a49c8925219fa"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-linux-arm64"
-      sha256 "d7cd6f68ec89d34d1c62599294b824ff2ff6990c61a06b217637ed61c7f082c2"
+      sha256 "b33d6ff2260e4f4c1ee54279ae21e5b7995f6ef5bd3d84b2b69f6de595697714"
     end
     on_intel do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-linux-amd64"
-      sha256 "b1c33dc312260011cdafcd3e09152d8aabaa6d880d0a8d8f18c45c6b427383bc"
+      sha256 "d1a78197a718d42955b25a09ebaf690524544ae50e0a5c827fe25dd069a447ed"
     end
   end
 
