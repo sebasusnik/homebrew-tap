@@ -1,28 +1,33 @@
 class Coda < Formula
   desc "Spotify CLI controller — search, play and control your music from the terminal"
   homepage "https://github.com/sebasusnik/coda"
-  version "0.1.3"
+  version "0.1.4"
   license "MIT"
+
+  resource "zsh-completion" do
+    url "https://github.com/sebasusnik/coda/releases/download/v#{version}/_coda"
+    sha256 "67d5d327a9cf211d1fb05543895d1b75ea29406773a497040f9cbff24e62a178"
+  end
 
   on_macos do
     on_arm do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-darwin-arm64"
-      sha256 "e20637e889c972dfc38bd16cf05593bf46066a013c0179afafd033a8034f6179"
+      sha256 "e85f986eaf05d8c63fd4f172d74e2262192a6eb54f501bae729f4ad4581f2f08"
     end
     on_intel do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-darwin-amd64"
-      sha256 "97ae409ace475a3d56179b7b9509e6cce06b27e99acec47c02c5e3c52c6489fb"
+      sha256 "720241c9df3da6378ac122cd85932a097994a37e4819ecf8d1ae563352e2ddfb"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-linux-arm64"
-      sha256 "c45ddc10b4d5ffaecec4f18807d0d749aec49f35bc69ce2c863a22681c7dcdf4"
+      sha256 "1ac9a279ca5e76168e807cf56a6c34c78b7f7aed073c62686708c40b0fa0bfa6"
     end
     on_intel do
       url "https://github.com/sebasusnik/coda/releases/download/v#{version}/coda-linux-amd64"
-      sha256 "6ea83117b2ccbe57ca40f1b4ab9c50eb4e9f0135c119d62b19a81229eb685a0f"
+      sha256 "52bc95cc5ca2e4919145373e5be8159194f591a08ffa9caa9e4acfb5865487e0"
     end
   end
 
@@ -30,9 +35,7 @@ class Coda < Formula
     arch = Hardware::CPU.arm? ? "arm64" : "amd64"
     os = OS.mac? ? "darwin" : "linux"
     bin.install "coda-#{os}-#{arch}" => "coda"
-    (zsh_completion/"_coda").write Utils.safe_popen_read(bin/"coda", "completion", "zsh")
-    (bash_completion/"coda").write Utils.safe_popen_read(bin/"coda", "completion", "bash")
-    (fish_completion/"coda.fish").write Utils.safe_popen_read(bin/"coda", "completion", "fish")
+    resource("zsh-completion").stage { zsh_completion.install "_coda" }
   end
 
   test do
